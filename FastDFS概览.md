@@ -33,7 +33,7 @@ FastDFS一共由三部分组成：
 7）FastDFS不对文件进行分块存储，与支持文件分块存储的DFS相比，更加简洁高效，并且完全能满足绝大多数互联网应用的实际需要。    
 8）FastDFS的设计目标就是支持大容量和高访问量，因此对于大量的小文件，可以支持得很好；  
 
-### 2.DisAdvantages
+### 2.Disadvantages
 1）FastDFS不支持POSIX接口方式，不是通用的文件系统，不支持FUSE，不能[mount使用](http://en.wikipedia.org/wiki/Mount_(Unix))；  
 2）不适用于分布式计算环境；  
 3）Group容量受单机存储容量限制，同时，当Group内有机器坏掉，数据恢复只能从Group内其他机器复制，使得恢复时间较长；  
