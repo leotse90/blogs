@@ -19,7 +19,7 @@ FastDFS一共由三部分组成：
 **下载文件**：  
 ![FastDFS下载文件](http://www.programmer.com.cn/wp-content/uploads/2010/11/%E5%88%86%E5%B8%83%E5%BC%8F%E6%96%87%E4%BB%B63.gif)
 
-## Uses
+## Applies
 适合大中型网站使用，用于视频、图片、音频等中小资源文件的存储。（建议范围：4KB<file_size<500MB）
 
 ## Features
@@ -37,7 +37,8 @@ FastDFS一共由三部分组成：
 1）FastDFS不支持POSIX接口方式，不是通用的文件系统，不支持FUSE，不能[mount使用](http://en.wikipedia.org/wiki/Mount_(Unix))；  
 2）不适用于分布式计算环境；  
 3）Group容量受单机存储容量限制，同时，当Group内有机器坏掉，数据恢复只能从Group内其他机器复制，使得恢复时间较长；  
-4）FastDFS适合存储用户上传的文件，比如用户照片。如果只是存储网站的静态文件（如装饰图片、css、js等），那没有必要使用FastDFS。  
+4）FastDFS适合存储用户上传的文件，比如用户照片。如果只是存储网站的静态文件（如装饰图片、css、js等），那没有必要使用FastDFS；  
+5）文档不够完善。相较于GlusterFS等DFS，FastDFS的相关文档资料相对欠缺。当前比较活跃的是ChinaUnix上的[FastDFS论坛](http://bbs.chinaunix.net/forum-240-1.html)。  
 
 ## Conclusion
 FastDFS，按照作者本人的说法，它把简洁和高效做到了极致，非常节约资源，中小网站完全用得起。  
