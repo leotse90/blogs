@@ -11,7 +11,6 @@ FDFS_IP = 9096
 def download_file_by_nginx(file_id, download_file_path):
 	src_url = u"http://{host}:{port}/{file_id}".format(host=FDFS_HOST, port=FDFS_IP, file_id=file_id)
 	file_name = file_id.split("/")[-1]
-	# download_file_name = os.path.join(download_file_path, file_name)
 
 	start_time = time.time()
 	ret = os.system(u"wget {src_url}".format(src_url=src_url))
@@ -23,13 +22,7 @@ def download_file_by_nginx(file_id, download_file_path):
 
 if __name__ == "__main__":
 	file_id = sys.argv[1]
-	# file_id = u"group1/M00/00/08/wKgJ5lVMd1CAEZEsAI58WC-SRBw661.mp4"
 	download_file_path = u"/home/leotse/test/"
-
-	# ret, duration = download_file_by_nginx(file_id, download_file_path)
-
-	# print ret
-	# print duration
 
 	failed_count = 0
 	duration_list = []
