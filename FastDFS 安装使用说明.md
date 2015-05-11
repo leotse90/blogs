@@ -1,4 +1,4 @@
-# FastDFS 安装使用说明
+# FastDFS安装使用说明
 整理：LeoTse
 
 ## 一、概述
@@ -178,8 +178,12 @@ example file url: http://192.168.9.230:9096/group1/M00/00/08/wKgJ5lVPFzCAJVXwAAA
 
 接下来介绍Python API调用。我们首先要获取最新的python api包，我们这里用到的是fdfs_client-py-master.  zip。我们将其在机器上解压，然后调用：  
 python setup.py install  
-安装完毕后即可调用，具体示例见附带的fdfs_test.py文件。  
-另，一起打包的fdfs_nginx_test.py文件为nginx下载文件的示例脚本。  
+安装完毕后即可调用。
+我们主要用到的方法有：  
+上传文件：upload_by_filename  
+下载文件：download_to_file  
+删除文件：delete_file  
+我们在这里也上传了两个脚本（与该blog在同一级目录），fdfs_test.py演示了Python API的使用方法，fdfs_nginx_test.py演示了如何以nginx的方式下载文件。  
 
 ## 四、FastDFS性能测试  
 我们测试了FastDFS的性能，主要是Python API的上传文件以及下载文件， Nginx下的下载文件性能，下面为测试结果：  
