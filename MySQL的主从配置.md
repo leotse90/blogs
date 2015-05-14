@@ -26,13 +26,13 @@ Slave：10.0.0.2
 下面来解释一下这些字段：  
 `log-bin         = mysql-bin`表示启用二进制日志，用以记录Master中数据的更新日志；  
 `server-id       = 1`唯一标识Master的ID，一般建议使用IP地址的最后一段；  
-`binlog-do-db    = test_db`选择需要备份的数据库，**如果需要备份全部，可以不增加这行**；
+`binlog-do-db    = test_db`选择需要备份的数据库，**如果需要备份全部，可以不增加这行**；  
 `expire-logs-days= 7`指定只保存7天的二进制日志，防止占用磁盘空间；  
 
-配置好后，我们需要重启MySQL服务。
+配置好后，我们需要重启MySQL服务。  
 `/etc/init.d/mysql restart`  
 
-我们需要看看是否已经配置成功了，我们可以执行以下SQL语句：
+我们需要看看是否已经配置成功了，我们可以执行以下SQL语句：  
 SHOW MASTER STATUS\G;  
 如果你看到类似下面的信息，则说明Master基本ok：  
 `            File: mysql-bin.000002`  
@@ -52,7 +52,7 @@ Slave的配置也很简单。同样修改/etc/mysql/my.cnf文件，找到[mysqld
 `relay-log       = mysql-relay-bin`配置中继日志（主要是在MySQL服务器的主从架构中的Slave上用到的，当Slave想要和Master进行数据的同步时，从服务器将Master的二进制日志文件拷贝到自己的主机上放在中继日志中，然后调用SQL线程按照拷中继日志文件中的二进制日志文件执行以便就可达到数据的同步。）  
 `log-slave-updates = 1`表示slave将复制事件写进自己的二进制日志；  
 
-重启MySQL服务：
+重启MySQL服务：  
 `/etc/init.d/mysql restart`  
 
 接下来就是让Slave连接Master，在Slave上执行以下SQL语句：  
