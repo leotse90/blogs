@@ -15,10 +15,10 @@ Slave：10.0.0.2
 如果我们有多个Slave，就执行上面的SQL多次，只需将backup@10.0.0.2中的IP改成其他Slave的IP。  
 这个账号可以说是Slave访问Master的通行证。
 
-2.Master配置
+2.Master配置  
 如果Master的数据库已经有数据了，那么你需要先停下Master上的数据库并备份数据。
 
-我们开始配置Master，修改/etc/mysql/my.cnf文件，找到[mysqld]段，增加以下字段：
+我们开始配置Master，修改/etc/mysql/my.cnf文件，找到[mysqld]段，增加以下字段：  
 `log-bin         = mysql-bin`  
 `server-id       = 1`  
 `binlog-do-db    = test_db`  
