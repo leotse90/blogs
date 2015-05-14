@@ -10,8 +10,8 @@ Slave：10.0.0.2
 ## 主从配置
 ### Master配置
 1.创建备份账户  
-首先，我们在Master上专门为Slave访问Master进行数据备份建立一个账号，用户名为backup，密码为“backup_mysql”。我们在Master上执行以下SQL语句：
-`GRANT REPLICATION SLAVE, RELOAD, SUPER ON *.* TO backup@'10.0.0.2' IDENTIFIED BY 'backup_mysql';`
+首先，我们在Master上专门为Slave访问Master进行数据备份建立一个账号，用户名为backup，密码为“backup_mysql”。我们在Master上执行以下SQL语句：  
+`GRANT REPLICATION SLAVE, RELOAD, SUPER ON *.* TO backup@'10.0.0.2' IDENTIFIED BY 'backup_mysql';`  
 如果我们有多个Slave，就执行上面的SQL多次，只需将backup@10.0.0.2中的IP改成其他Slave的IP。  
 这个账号可以说是Slave访问Master的通行证。
 
