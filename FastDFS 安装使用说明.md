@@ -100,7 +100,9 @@ b）复制tracker.conf文件到/etc/fdfs/目录下：
 cp tracker.conf /etc/fdfs/  
 
 c）运行Tracker：  
-fdfs_tracker /etc/fdfs/tracker.conf  
+fdfs_tracker /etc/fdfs/tracker.conf   
+停止Tracker：/usr/local/bin/stop.sh fdfs_tracker /etc/fdfs/tracker.conf   
+重启Tracker：/usr/local/bin/restart.sh fdfs_tracker /etc/fdfs/tracker.conf 
 
 ### 6.Storage配置与运行：  
 在这里，同样我们需要创建一个目录保存Storage的data和log，我们假定Storage上该目录为/home/leotse/fastdfs/storage/。  
@@ -160,6 +162,10 @@ url_have_group_name = true
 /usr/local/nginx/sbin/nginx  
 运行Storage：  
 fdfs_storaged /etc/fdfs/storage.conf  
+停止Storage：  
+/usr/local/bin/stop.sh fdfs_storaged /etc/fdfs/storage.conf  
+重启Storage：  
+/usr/local/bin/restart.sh fdfs_storaged /etc/fdfs/storage.conf
 
 ### 7.运行：  
 我们已经成功配置了Tracker和Storage以及Nginx，接下来就是上传和下载文件。  
