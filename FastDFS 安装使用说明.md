@@ -93,6 +93,8 @@ make
 make install  
 
 ### 5.Tracker配置与启动：  
+在配置之前，非常郑重地推荐这个：[FastDFS 配置文件详解(修订版1) ](http://bbs.chinaunix.net/thread-1941456-1-1.html)，里面非常详尽地介绍了FastDFS的配置文件具体参数。  
+
 a）修改tracker.conf文件，该文件的位置在fastdfs-5.05/conf下。在此之前，我们需要创建一个目录存放Tracker的data和log，我们在这里假定这个路径为：/home/leotse/fastdfs/tracker/，我们需要确保该路径存在。我们只需要修改：  
 base_path=/home/leotse/fastdfs/tracker/  
 
