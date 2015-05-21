@@ -40,6 +40,50 @@ FastDFS一共由三部分组成：
 4）FastDFS适合存储用户上传的文件，比如用户照片。如果只是存储网站的静态文件（如装饰图片、css、js等），那没有必要使用FastDFS；  
 5）文档不够完善。相较于GlusterFS等DFS，FastDFS的相关文档资料相对欠缺。当前比较活跃的是ChinaUnix上的[FastDFS论坛](http://bbs.chinaunix.net/forum-240-1.html)。  
 
+
+## others
+来源于论坛原作者的话：  
+1.单台tracker的性能特别高。因为tracker处理查询时，直接访问内存中的索引数据，不存在任何性能瓶颈。单台服务器支持的QPS超过5000没有任何问题。  
+
+2.出于性能等考虑，必须通过FastDFS的API来对文件进行存取，不能mount使用。 
+
+3.上传文件成功后，文件ID由storage server返回给客户端。文件ID中包括了分组、文件路径和文件名等信息，需要由客户端来保存文件ID。因此FastDFS 服务器端是不需要保存文件ID或索引等信息的。不再使用的文件（比如用户删除了自己的照片文件），应该由client调用delete file接口删除该文件。  
+
+4.FastDFS存储文件采用的是256 * 256的两级目录；  
+
+5.tracker不耗内存，有1GB内存足矣；   
+
+6.FastDFS如何做整体迁移？如换机房更换IP?  
+
+	如果新旧IP地址一一对应，而且是一样的，那非常简单，直接将data目录拷贝过去即可。
+
+	IP不一样的话，会比较麻烦一些。
+	如果使用了V4的自定义server ID特性，那么比较容易，直接将tracker上的IP和ID映射文件storage_ids.conf修改好即可。
+
+	如果是用IP地址作为服务器标识，那么需要修改tracker和storage的data目录下的几个数据文件，将旧IP调整为新IP。
+	注意storage的data目录下有一个.打头的隐藏文件也需要修改。
+	另外，需要将后缀为mark的IP地址和端口命名的同步位置记录文件名改名。
+	文件全部调整完成后才能启动集群服务。
+
+	tracker server上需要调整的文件列表：
+	data/storage_groups_new.dat
+	data/storage_servers_new.dat
+	data/storage_sync_timestamp.dat
+
+	storage server需要调整的文件列表：
+	data/.data_init_flag
+	data/sync/${ip_addr}_${port}.mark：此类文件，需要将文件名中的IP地址调整过来。
+
+7./etc/fdfs/mod_fastdfs.conf中的url_have_group_name项为true,否则会使用fdfs_test上传测试文件而后进行测试时，会报400错误。
+
+8.[FastDFS监控系统](http://bbs.chinaunix.net/thread-3772130-1-4.html)
+
+9.[FastDFS原理分析系列文章](http://bbs.chinaunix.net/thread-4164253-1-5.html)
+
+10.部署方式和存储方式：作者推荐采用多个storage服务器(多个group)，各自分别挂载几个单盘的方式，以期提高总的磁盘IO性能。
+
+11.相同内容的文件在系统里只保存一份文件实体，每次上传同一个文件，返回给client的文件ID是不同的，返回的文件ID通过链接的方式指向该实体文件，以unix的符号链接来理解：目标文件为实体文件，每次上传产生的文件为符号链接，指向对应的实体文件。
+
 ## Conclusion
 FastDFS，按照作者本人的说法，它把简洁和高效做到了极致，非常节约资源，中小网站完全用得起。  
 作为国人在mogileFS的基础上进行改进的key-value型文件系统，一方面，它是我们国人的骄傲，另一方面，也希望FastDFS发展越来越好，相关的文档也越来越完善。
