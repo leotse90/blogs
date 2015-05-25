@@ -84,6 +84,17 @@ FastDFS一共由三部分组成：
 
 11.相同内容的文件在系统里只保存一份文件实体，每次上传同一个文件，返回给client的文件ID是不同的，返回的文件ID通过链接的方式指向该实体文件，以unix的符号链接来理解：目标文件为实体文件，每次上传产生的文件为符号链接，指向对应的实体文件。
 
+12.Storage的状态：
+    STORAGE SERVER的状态通常有七种：
+    FDFS_STORAGE_STATUS：INIT      :初始化，尚未得到同步已有数据的源服务器  
+    FDFS_STORAGE_STATUS：WAIT_SYNC :等待同步，已得到同步已有数据的源服务器  
+    FDFS_STORAGE_STATUS：SYNCING   :同步中  
+    FDFS_STORAGE_STATUS：DELETED   :已删除，该服务器从本组中摘除  
+    FDFS_STORAGE_STATUS：OFFLINE   :离线  
+    FDFS_STORAGE_STATUS：ONLINE    :在线，尚不能提供服务  
+    FDFS_STORAGE_STATUS：ACTIVE    :在线，可以提供服务  
+
+
 ## Conclusion
 FastDFS，按照作者本人的说法，它把简洁和高效做到了极致，非常节约资源，中小网站完全用得起。  
 作为国人在mogileFS的基础上进行改进的key-value型文件系统，一方面，它是我们国人的骄傲，另一方面，也希望FastDFS发展越来越好，相关的文档也越来越完善。
