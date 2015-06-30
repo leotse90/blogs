@@ -160,6 +160,8 @@ group_count = 0
 url_have_group_name = true  
 修改完毕。  
 
+conf目录下的http.conf和mime.types两个文件也需要copy到/etc/fdfs目录下。
+
 运行nginx：  
 /usr/local/nginx/sbin/nginx  
 运行Storage：  
