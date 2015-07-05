@@ -36,7 +36,6 @@ Celery的安装非常简单，在linux系统下直接执行：
 那么，生产者的伪代码如下：
 <pre><code>  
 import download_video_worker
-
 video_list = get_video_list()
 for video in video_list: 
     download_video_worker.apply_async([video])
@@ -45,7 +44,6 @@ for video in video_list:
 消费者的伪代码如下： 
 <pre><code> 
 download_app=Celery("download_videos", broker="redis://localhost:6379/0")
-
 @download_app.task`  
 def download_video_worker(video):
     download_video_to_local(video)
