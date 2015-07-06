@@ -14,6 +14,8 @@ Celery就是这样一个任务队列，易于使用，入门简单。Celery常�
 Celery的安装非常简单，在linux系统下直接执行：  
 `sudo pip install Celery`  
 `sudo pip install celery-with-redis`  
+如果上述安装失败，可以尝试：  
+`sudo easy_install Celery`   
 
 我们来验证一下Celery是否安装成功，进入python shell，输入：  
 `from celery import Celery`  
