@@ -15,8 +15,7 @@ Slave：10.0.0.2
 如果我们有多个Slave，就执行上面的SQL多次，只需将backup@10.0.0.2中的IP改成其他Slave的IP。  
 这个账号可以说是Slave访问Master的通行证。
 
-2.Master配置  
-如果Master的数据库已经有数据了，那么你需要先停下Master上的数据库并备份数据。
+2.Master配置    
 
 我们开始配置Master，修改/etc/mysql/my.cnf文件，找到[mysqld]段，增加以下字段：  
 `log-bin         = mysql-bin`  
@@ -34,12 +33,30 @@ Slave：10.0.0.2
 
 我们需要看看是否已经配置成功了，我们可以执行以下SQL语句：  
 SHOW MASTER STATUS\G;  
-如果你看到类似下面的信息，则说明Master基本ok：  
+如果你看到类似下面的信息，则说明Master基本ok，如果数据库中已经有数据，这个信息将会用到：  
 `            File: mysql-bin.000002`  
 `        Position: 107`  
 `    Binlog_Do_DB: test_db`  
 `Binlog_Ignore_DB: `  
 
+3.主数据库已经有数据的Master配置
+
+如果Master的数据库已经有数据了，你可以遵照下面的步骤：  
+1）进入MySQL终端，查看当前正在使用的库有哪些：  
+`SHOW databases;`  
+
+2）停止当前MySQL的所有写操作，并查看当前数据库的状态：  
+`FLUSH TABLES WITH READ LOCK;`  
+
+
+3）打开另一个终端（也可以直接exit离开当前MySQL，但是为了避免重复进入MySQL输密码，建议打开一个新的终端），将要备份的数据库导出成sql文件，并将其传到Slave机器上：  
+`mysqldump -uroot -p****** test_db > test_db.sql`  
+`scp test_db.sql root@10.0.0.2:/root/`  
+
+4）切换到MySQL终端，解锁：
+`UNLOCK TABLES;`
+
+至此，Master配置结束。
 
 ### Slave配置
 Slave的配置也很简单。同样修改/etc/mysql/my.cnf文件，找到[mysqld]段，增加以下字段：  
@@ -55,9 +72,16 @@ Slave的配置也很简单。同样修改/etc/mysql/my.cnf文件，找到[mysqld
 重启MySQL服务：  
 `/etc/init.d/mysql restart`  
 
+如果主数据库已经有数据，需要将新建database并将数据导入：  
+`CREATE DATABASE test_db;`  
+切换到终端（linux终端）：  
+`mysql -uroot -p****** test_db < test_db.sql`  
+
 接下来就是让Slave连接Master，在Slave上执行以下SQL语句：  
 `CHANGE MASTER TO MASTER_HOST='10.0.0.1',MASTER_USER='backup', MASTER_PASSWORD='backup_mysql', MASTER_LOG_FILE='mysql-bin.000001',MASTER_LOG_POS=0;`  
-`START SLAVE\G;`  
+(如果主数据库有数据，需要将MASTER_LOG_FILE和MASTER_LOG_POS按照SHOW MASTER STATUS\G;的结果修改，如MASTER_LOG_FILE='mysql-bin.000002',MASTER_LOG_POS=107)  
+`START SLAVE\G;`   
+
 
 最后，我们通过执行`SHOW SLAVE STATUS\G;`来查看是否配置成功，如果出现：  
 `*************************** 1. row ***************************`  
