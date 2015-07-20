@@ -93,6 +93,16 @@ FastDFS一共由三部分组成：
     FDFS_STORAGE_STATUS：ONLINE    :在线，尚不能提供服务  
     FDFS_STORAGE_STATUS：ACTIVE    :在线，可以提供服务  
 
+13.安装pcre时，出现  
+configure: error: You need a C++ compiler for C++ support.  
+解决方案：yum install -y gcc gcc-c++
+
+14.上传文件时：  
+errno: 113, error info: No route to host  
+解决方案：有可能是防火墙问题。iptables -F
+
+15.启动nginx，permission denied，这时一般是权限问题。  
+解决方案：修改nginx配置，将#user  nobody;修改为user  root;（注意：可能有安全隐患），重启nginx即可。
 
 ## Conclusion
 FastDFS，按照作者本人的说法，它把简洁和高效做到了极致，非常节约资源，中小网站完全用得起。  
