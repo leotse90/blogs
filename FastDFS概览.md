@@ -11,13 +11,13 @@ FastDFS一共由三部分组成：
 **StorageServer**：存储文件和文件meta信息。直接使用操作系统的文件系统管理DFS上的文件；  
 **Client**：使用者与请求发起方。通过专有接口，使用TCP/IP协议与跟踪器服务器或存储节点进行数据交互；  
 
-![FastDFS架构](http://www.programmer.com.cn/wp-content/uploads/2010/11/%E5%88%86%E5%B8%83%E5%BC%8F%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9FFastDFS%E6%9E%B6%E6%9E%84%E5%89%96.gif)
+![FastDFS架构](https://github.com/leotse90/blogs/blob/master/images/fdfs01.gif)
 
 **上传文件**：  
-![FastDFS上传文件](http://www.programmer.com.cn/wp-content/uploads/2010/11/%E5%88%86%E5%B8%83%E5%BC%8F%E6%96%87%E4%BB%B62.gif)
+![FastDFS上传文件](https://github.com/leotse90/blogs/blob/master/images/fdfs02.gif)
 
 **下载文件**：  
-![FastDFS下载文件](http://www.programmer.com.cn/wp-content/uploads/2010/11/%E5%88%86%E5%B8%83%E5%BC%8F%E6%96%87%E4%BB%B63.gif)
+![FastDFS下载文件](https://github.com/leotse90/blogs/blob/master/images/fdfs03.gif)
 
 ## Applies
 适合大中型网站使用，用于视频、图片、音频等中小资源文件的存储。（建议范围：4KB<file_size<500MB）
