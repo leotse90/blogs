@@ -50,7 +50,7 @@ cd fastdfs-5.05
 ./make.sh install  
 到此我们的安装暂时结束，相应的配置等会会介绍到。我们下一步来安装Nginx依赖。
 
-### 3.安装Nginx依赖模块（只需要在Storage上安装）：  
+### 3.安装Nginx依赖模块（只需要在Storage上安装，如果需要Tracker直接提供文件访问服务，Tracker也需安装）：  
 FastDFS通过HTTP服务器来去提供HTTP服务。我们采用Nginx作为HTTP服务器，因为Nginx能支持高并发的访问并提供负载均衡等高性能的服务。  
 我们约定，所有的这些包都在/home/leotse/fastdfs/下。  
 a）fastdfs-nginx-module安装:  
