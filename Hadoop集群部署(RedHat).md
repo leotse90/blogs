@@ -63,60 +63,60 @@ Slave1：172.16.10.137
 3.修改core-site.xml配置文件：  
 `vi etc/hadoop/core-site.xml`  
 修改为：  
-<configuration>  
-<property>  
-    <name>fs.defaultFS</name>  
-    <value>hdfs://Master:9000</value>  
-</property>  
-<property>  
-    <name>hadoop.tmp.dir</name>  
-    <value>file:/home/xiefeng/dependecies/hadoop-2.6.0/tmp</value>  
-    <description>Abase for other temporary directories.</description>  
-</property>  
-</configuration>  
+`<configuration>`  
+`<property>`  
+`    <name>fs.defaultFS</name>`  
+`    <value>hdfs://Master:9000</value>`  
+`</property>`  
+`<property>`  
+`    <name>hadoop.tmp.dir</name>`  
+`    <value>file:/home/xiefeng/dependecies/hadoop-2.6.0/tmp</value>`  
+`    <description>Abase for other temporary directories.</description>`  
+`</property>`  
+`</configuration>`  
 
 4.修改hdfs-site.xml配置文件为：  
-<configuration>  
-<property>  
-    <name>dfs.namenode.secondary.http-address</name>  
-    <value>Master:50090</value>  
-</property>  
-<property>  
-    <name>dfs.namenode.name.dir</name>  
-    <value>file:/home/xiefeng/dependecies/hadoop-2.6.0/tmp/dfs/name</value>  
-</property>  
-<property>  
-    <name>dfs.datanode.data.dir</name>   
-    <value>file:/home/xiefeng/dependecies/hadoop-2.6.0/tmp/dfs/data</value>  
-</property>  
-<property>   
-    <name>dfs.replication</name>   
-    <value>1</value>  
-</property>  
-</configuration>  
+`<configuration>`  
+`<property>`   
+`    <name>dfs.namenode.secondary.http-address</name>`  
+`    <value>Master:50090</value>`  
+`</property>`  
+`<property>`  
+`    <name>dfs.namenode.name.dir</name>`  
+`    <value>file:/home/xiefeng/dependecies/hadoop-2.6.0/tmp/dfs/name</value>`  
+`</property>`  
+`<property>`  
+`    <name>dfs.datanode.data.dir</name>`   
+`    <value>file:/home/xiefeng/dependecies/hadoop-2.6.0/tmp/dfs/data</value>`  
+`</property>`  
+`<property>`   
+`    <name>dfs.replication</name>`   
+`    <value>1</value>`  
+`</property>`  
+`</configuration>`  
 
 5.复制mapred-site.xml.template得到mapred-site.xml文件：
 `cp mapred-site.xml.template mapred-site.xml`  
 修改mapred-site.xml配置文件为：  
-<configuration>  
-<property>  
-    <name>mapreduce.framework.name</name>  
-    <value>yarn</value>  
-</property>  
-</configuration>  
+`<configuration>`  
+`<property>`  
+`    <name>mapreduce.framework.name</name>`  
+`    <value>yarn</value>`  
+`</property>`  
+`</configuration>`  
 
 6.修改yarn-site.xml配置文件为：  
-<configuration>  
-<!-- Site specific YARN configuration properties -->  
-<property>  
-    <name>yarn.resourcemanager.hostname</name>  
-    <value>Master</value>  
-</property>  
-<property>  
-    <name>yarn.nodemanager.aux-services</name>  
-    <value>mapreduce_shuffle</value>  
-</property>  
-</configuration>  
+`<configuration>`  
+`<!-- Site specific YARN configuration properties -->`  
+`<property>`  
+`    <name>yarn.resourcemanager.hostname</name>`  
+`    <value>Master</value>`  
+`</property>`  
+`<property>`  
+`    <name>yarn.nodemanager.aux-services</name>`  
+`    <value>mapreduce_shuffle</value>`  
+`</property>`  
+`</configuration>`  
 
 ## Slave部署
 1.将 Master 上的 Hadoop 文件先打包然后复制到各个节点上：  
