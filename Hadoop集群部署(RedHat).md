@@ -118,6 +118,11 @@ Slave1：172.16.10.137
 `</property>`  
 `</configuration>`  
 
+7.一般的，我们还需要修改一下hadoop-env.sh，将其JAVA_HOME修改为当前机器的JAVA_HOME：  
+`# The java implementation to use.`  
+`# export JAVA_HOME=${JAVA_HOME}`  
+`export JAVA_HOME=/work/p/jdk/default`  
+
 ## Slave部署
 1.将 Master 上的 Hadoop 文件先打包然后复制到各个节点上：  
 `sudo tar -zcf hadoop－2.6.0.tar.gz hadoop－2.6.0/`  
