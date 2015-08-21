@@ -184,7 +184,11 @@ http.tracker_server_port=9096
 fdfs_test /etc/fdfs/client.conf upload /home/leotse/test/test_fdfs.txt  
 我们可以看到这样的返回：  
 example file url: http://192.168.9.230:9096/group1/M00/00/08/wKgJ5lVPFzCAJVXwAAApRhJa9hc052_big.txt  
-我们可以通过这个url获取这个文件。  
+我们可以通过这个url获取这个文件。
+
+同样，我们来测试FastDFS的下载文件，以上面的文件为例：  
+fdfs_download_file /etc/fdfs/client.conf group1/M00/00/08/wKgJ5lVPFzCAJVXwAAApRhJa9hc052_big.txt download_test.txt  
+我们可以看到我们将这个文件下载下来并且文件名为download_test.txt。
 
 接下来介绍Python API调用。我们首先要获取最新的python api包，我们这里用到的是fdfs_client-py-master.  zip。我们将其在机器上解压，然后调用：  
 python setup.py install  
