@@ -32,6 +32,7 @@ FastDFS一共由三部分组成：
 6）可以使用Apache、Nginx等WebServer访问和下载文件；  
 7）FastDFS不对文件进行分块存储，与支持文件分块存储的DFS相比，更加简洁高效，并且完全能满足绝大多数互联网应用的实际需要。    
 8）FastDFS的设计目标就是支持大容量和高访问量，因此对于大量的小文件，可以支持得很好；  
+9）FastDFS自v1.14开始支持相同文件内容只存储一份，但是需要安装FastDHT，如果已经存在上传的文件，则建立一个符号链接以节省磁盘空间；
 
 ### 2.Disadvantages
 1）FastDFS不支持POSIX接口方式，不是通用的文件系统，不支持FUSE，不能[mount使用](http://en.wikipedia.org/wiki/Mount_(Unix))；  
