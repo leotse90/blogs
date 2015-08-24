@@ -9,11 +9,11 @@ __整理：leotse__
 
 ### 升级
 1.下载python2.7安装包：  
-`wget http://python.org/ftp/python/2.7.2/Python-2.7.2.tgz`
+`wget http://python.org/ftp/python/2.7.6/Python-2.7.6.tgz`
 
 2.安装python2.7:  
-`tar -zxvf Python-2.7.2.tgz`  
-`cd Python-2.7.2`  
+`tar -zxvf Python-2.7.6.tgz`  
+`cd Python-2.7.6`  
 `./configure --prefix=/usr/local/python27`  
 `make`  
 `sudo make install`  
