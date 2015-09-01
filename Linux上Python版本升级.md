@@ -26,7 +26,7 @@ __整理：leotse__
 
 ### 其他
 升级python版本的一个后遗症就是yum无法正常工作，只需要做一点点修改即可：  
-`sudo /usr/bin/yum`  
+`sudo vi /usr/bin/yum`  
 将第一行  
 `#!/usr/bin/python`  
 改成原来的版本，在这里我们改成：  
