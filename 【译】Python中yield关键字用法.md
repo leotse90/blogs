@@ -104,23 +104,23 @@ Yield关键字和return的用法一样，只是（用到yield的）函数将会�
 
 **生成器**：
 
-`# 在这里你创建了node对象的一个返回生成器的函数`  
-`def node._get_child_candidates(self, distance, min_dist, max_dist):`  
-``  
-`  # 下面这段代码将会在每次你使用这个生成器时被调用：`  
-``  
-`  # 如果node对象仍然有一个左child`  
-`  # 而且distance满足条件，则返回下一个左child`  
-`  if self._leftchild and distance - max_dist < self._median:`  
+`# 在这里你创建了node对象的一个返回生成器的函数`   
+`def node._get_child_candidates(self, distance, min_dist, max_dist):`   
+ 
+`# 下面这段代码将会在每次你使用这个生成器时被调用：`   
+
+`  # 如果node对象仍然有一个左child`   
+`  # 而且distance满足条件，则返回下一个左child`   
+`  if self._leftchild and distance - max_dist < self._median:`   
 `      yield self._leftchild`  
-``  
-`  # 如果node对象仍然有一个右child`  
-`  # 而且distance满足条件，则返回下一个右child`  
-`  if self._rightchild and distance + max_dist >= self._median:`  
+
+`  # 如果node对象仍然有一个右child`   
+`  # 而且distance满足条件，则返回下一个右child`   
+`  if self._rightchild and distance + max_dist >= self._median:`   
 `      yield self._rightchild`  
-``  
-`  # 如果这个函数运行到这里了，意味着这个生成器可以看成空的了。`  
-`  # 亦即：再也没有符合条件的左右child了`  
+
+`# 如果这个函数运行到这里了，意味着这个生成器可以看成空的了。`   
+`# 亦即：再也没有符合条件的左右child了`   
 
 **调用方**：
 
