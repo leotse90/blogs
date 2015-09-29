@@ -126,24 +126,24 @@ Yield关键字和return的用法一样，只是（用到yield的）函数将会�
 
 `# 创建一个空的list和一个包含当前对象引用的list`  
 `result, candidates = list(), [self]`  
-``  
+  
 `# 循环处理candidates (最初只有一个元素)`  
 `while candidates:`  
-``  
+  
 `    # 获取最后一个candidate将其移除`  
 `    node = candidates.pop()`  
-``  
-`    # 获取obj和candidate之间的距离`  
-`    distance = node._get_dist(obj)`  
-``  
-`    # 如果距离合适，保存结果在result中`  
+  
+`    # 获取obj和candidate之间的距离`   
+`    distance = node._get_dist(obj)`   
+  
+`    # 如果距离合适，保存结果在result中`   
 `    if distance <= max_dist and distance >= min_dist:`  
 `        result.extend(node._values)`  
-``  
+  
 `    # 将candidate的子节点保存在candidates中`  
 `    # 该循环会一直循环直到遍历了所有的子节点。`  
 `    candidates.extend(node._get_child_candidates(distance, min_dist, max_dist))`  
-``  
+  
 `return result`  
 
 这段代码包含了以下几个很有意思的地方：
