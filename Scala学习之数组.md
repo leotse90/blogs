@@ -41,6 +41,9 @@ res14: Array[Int] = Array(0, 3, 5, 6)
 ## 可变数组
 有时候，我们在一开始声明的时候只知道我们需要数组这种容器，但是具体要放多少数据我们暂且不知道，这时候我们需要用到可变数组（又称为数组缓冲）ArrayBuffer。ArrayBuffer的声明和Array并没有太大的差异：
 ```scala
+scala> import scala.collection.mutable.ArrayBuffer
+import scala.collection.mutable.ArrayBuffer
+
 scala> val arrbuf1 = new ArrayBuffer[Int]
 arrbuf1: scala.collection.mutable.ArrayBuffer[Int] = ArrayBuffer()
 
