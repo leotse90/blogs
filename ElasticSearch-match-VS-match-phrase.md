@@ -37,7 +37,7 @@ GET /test/student/_search
                "name": "februus",
                "sex": "male",
                "age": 24,
-               "": "He is passionate.",
+               "description": "He is passionate.",
                "interests": "reading, programing"
             }
          },
