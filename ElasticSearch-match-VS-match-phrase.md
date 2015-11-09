@@ -1,6 +1,7 @@
 #ElasticSearch - match VS match_phrase
 _by:leotse_
 
+## match VS match_phrase
 我们以一个使用的示例开始，我们有student这个type中存储了一些学生的基本信息，我们分别使用match和match_phrase进行查询，我们得到如下结果：  
 首先，使用match。
 ```
@@ -153,6 +154,7 @@ GET /test/student/_search
 那么，如果我们不想将我们的查询条件拆分，应该怎么办呢？这时候我们就可以使用match_phrase：  
 match_phrase是短语搜索，亦即它会将给定的短语（phrase）当成一个完整的查询条件。当使用match_phrase进行搜索的时候，你的结果集中，所有的Document都必须包含你指定的查询词组，在这里是“He is”。这看起来有点像关系型数据库的like查询操作。
 
+## 相关性评分的相关知识
 相信到这里，我们都能比较清楚的理解这两者的区别。但是我们还有一个问题没有弄清楚，那就是_score到底是怎么得出的？为什么同样包含了“He is”这个phrase，_id为2的Document得分为0.30685282，而_id为1的Document的得分为0.23013961？
 
 查询语句会为每个Document计算一个相关性评分_score，评分的计算方式取决于不同的查询类型。ES的相似度算法为TF/IDF（检索词频率/反向文档频率）。我们在这里顺带介绍一下TF/IDF的几个相关概念：
