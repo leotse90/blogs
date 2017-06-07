@@ -1,9 +1,6 @@
-title: Android获取全局Context
-date: 2017-06-07 23:33:21
-tags:  Android
-categories: 技术
----
-_by:leotse_
+# Android获取全局Context
+
+by: leotse
 
 在Android的开发中，我们经常需要在不同的场景中使用Context对象。比如，弹出一个Toast，启动一个Service或者一个Activity等等。
 
