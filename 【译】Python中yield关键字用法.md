@@ -10,7 +10,8 @@ Python中的yield关键字是用来干嘛的？它都干了些什么？
 
 例如，我试图理解下面这段代码：
 
-`def node._get_child_candidates(self, distance, min_dist, max_dist):`  
+`
+def node._get_child_candidates(self, distance, min_dist, max_dist):`  
 `    if self._leftchild and distance - max_dist < self._median:`  
 `        yield self._leftchild`  
 `    if self._rightchild and distance + max_dist >= self._median:`  
@@ -18,14 +19,16 @@ Python中的yield关键字是用来干嘛的？它都干了些什么？
 
 下面是调用代码：
 
-`result, candidates = list(), [self]`  
-`while candidates:`  
+``` python
+result, candidates = list(), [self]` 
+`while candidates:` 
 `    node = candidates.pop()`  
 `    distance = node._get_dist(obj)`  
 `    if distance <= max_dist and distance >= min_dist:`  
 `        result.extend(node._values)`  
 `    candidates.extend(node._get_child_candidates(distance, min_dist, max_dist))`  
-`return result`  
+`return result`  
+```
 
 当_get_child_candidates函数被调用时发生了什么？返回了一个list？返回了单个元素？还是它再次被调用了？后面的调用什么时候停止呢？
 
